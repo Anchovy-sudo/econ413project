@@ -10,11 +10,14 @@ country_info <- WDI(indicator = "NY.GDP.PCAP.PP.CD",
                     end = 2020)
 setDT(country_info)
 cinfo <- country_info[order(country_info$NY.GDP.PCAP.PP.CD,decreasing = TRUE)]
-isoc <- c('XU','V4','XD','OE','XC','EU','Z7','B8','S4','Z4','S1')
+isoc <- c('XU','V4','XD','OE','XC','EU','Z7','B8','S4','Z4','S1','T7','7E','V3',
+          'XT','1W','ZQ','ZJ','S3','T2','T4','4E','XJ','1A','XF','XP','ZT','XO',
+          'T3','XQ','V2','XN','S2','TS','XH','F1','ZI','ZG','T6','ZF','XG','ZH',
+          'V1','XI','XL','XE','XM','XY')
 for (isocode in isoc) {
   cinfo <- cinfo[iso2c != isocode]
 }
-cinfo <- cinfo[1:60]
+#cinfo <- cinfo[1:60]
 country_names <- cinfo[['country']]
 
 data1 <- covid19(country = country_names)
