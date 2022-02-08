@@ -17,4 +17,21 @@ for (isocode in isoc) {
 cinfo <- cinfo[1:60]
 country_names <- cinfo[['country']]
 
-data <- covid19(country = country_names)
+data1 <- covid19(country = country_names)
+setDT(data1)
+data <- data1[,c("date","confirmed","deaths","recovered","tests","people_vaccinated",
+                  "people_fully_vaccinated","hosp","icu","vent","school_closing",
+                  "workplace_closing","cancel_events","gatherings_restrictions",
+                  "transport_closing","stay_home_restrictions",
+                  "internal_movement_restrictions","international_movement_restrictions",
+                  "information_campaigns","testing_policy","contact_tracing",
+                  "facial_coverings","vaccination_policy","elderly_people_protection",
+                  "government_response_index","containment_health_index","economic_support_index",
+                  "administrative_area_level_1","population","iso_alpha_3",
+                  "key_google_mobility")]
+data[,confirmedprop := confirmed/population]
+data[,deathsprop := deaths/population]
+data[,recoveredprop := recovered/population]
+data[,testsprop := tests/population]
+data[,vaccinatedprop := people_vaccinated/population]
+data[,fullvaccinatedprop := people_fully_vaccinated/population]
