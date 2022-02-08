@@ -5,6 +5,10 @@ library(COVID19)
 library(ggplot2)
 library(stargazer)
 library(plm)
+library(tidyverse)
+library(broom)
+library(scales)
+library(modelsummary)
 
 # Determining the high income countries (countries with high GDP per capita)
 country_info <- WDI(indicator = "NY.GDP.PCAP.PP.CD",
